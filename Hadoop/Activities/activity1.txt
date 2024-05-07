@@ -1,0 +1,94 @@
+
+# Create a text file named txtFile.txt and add the text
+$ vim txtFile.txt
+
+# Create a CSV file named csvFile.csv and add the data
+$ vim csvFile.csv
+
+# Make a textData folder on the HDFS
+$ hdfs dfs -mkdir /user/swapna/textData
+
+# Copy the TXT file, txtFile.txt, into the textData folder in the HDFS
+$ hdfs dfs -put ./txtFile.txt /user/swapna/textData
+
+# Copy the CSV file, csvFile.csv, into the textData folder in the HDFS
+$ hdfs dfs -put ./csvFile.csv /user/swapna/textData
+
+# Use the stat command to get the file statistics
+$ hdfs dfs -stat "type:%F permissions:%a %u:%g size:%b name:%n" /user/swapna/textData/txtFile.txt
+$ hdfs dfs -stat "type:%F permissions:%a %u:%g size:%b name:%n" /user/swapna/textData/csvFile.csv
+
+
+*************CMD lines *****************************************************************************************
+
+root@a020a3889766:~# hdfs dfs -ls /user
+Found 2 items
+drwxr-xr-x   - root supergroup          0 2021-08-23 10:44 /user/root
+drwxr-xr-x   - root supergroup          0 2024-04-16 04:02 /user/swapna
+root@a020a3889766:~# hdfs dfs -put ./inuput.txt /user/swapna
+put: `./inuput.txt': No such file or directory
+root@a020a3889766:~# hdfs dfs -put ./input.txt /user/swapna
+root@a020a3889766:~# ls
+input.txt
+root@a020a3889766:~# hdfs dfs -ls /user/swapna
+Found 1 items
+-rw-r--r--   1 root supergroup         52 2024-04-16 04:06 /user/swapna/input.txt
+root@a020a3889766:~# hdfs dfs -cat /user/swapna/input.txt
+hadoop testing
+database testing
+informatica testing
+root@a020a3889766:~# vim input.txt
+root@a020a3889766:~# hdfs dfs -put -f ./input.txt /user/swapna
+root@a020a3889766:~# hdfs dfs -cat /user/swapna/input.txt
+hadoop testing
+database testing
+informatica testing
+Test 123
+root@a020a3889766:~# vim input1.txt
+root@a020a3889766:~# vim txtFile.txt
+root@a020a3889766:~# cat txtFile.txt
+Night. That over years creepeth green fourth had after also seas make. Female living sea very hath. Dry good in is bring fifth under creeping all tree land
+root@a020a3889766:~# vim csvFile.csv
+root@a020a3889766:~# cat csvFile.csv
+"Sell", "List", "Living", "Rooms", "Beds", "Baths", "Age", "Acres", "Taxes"
+142, 160, 28, 10, 5, 3,  60, 0.28,  3167
+175, 180, 18,  8, 4, 1,  12, 0.43,  4033
+129, 132, 13,  6, 3, 1,  41, 0.33,  1471
+138, 140, 17,  7, 3, 1,  22, 0.46,  3204
+232, 240, 25,  8, 4, 3,   5, 2.05,  3613
+135, 140, 18,  7, 4, 3,   9, 0.57,  3028
+150, 160, 20,  8, 4, 3,  18, 4.00,  3131
+207, 225, 22,  8, 4, 2,  16, 2.22,  5158
+271, 285, 30, 10, 5, 2,  30, 0.53,  5702
+ 89,  90, 10,  5, 3, 1,  43, 0.30,  2054
+153, 157, 22,  8, 3, 3,  18, 0.38,  4127
+root@a020a3889766:~# hdfs dfs -put ./txtFile.txt /user/swapna
+root@a020a3889766:~# hdfs dfs -put ./csvFile.csv /user/swapna
+root@a020a3889766:~# hdfs dfs -ls /user/swapna
+Found 3 items
+-rw-r--r--   1 root supergroup        527 2024-04-16 04:43 /user/swapna/csvFile.csv
+-rw-r--r--   1 root supergroup         61 2024-04-16 04:11 /user/swapna/input.txt
+-rw-r--r--   1 root supergroup        156 2024-04-16 04:42 /user/swapna/txtFile.txt
+root@a020a3889766:~# hdfs dfs -mkdir /user/textData
+root@a020a3889766:~# hdfs dfs -ls /user
+Found 3 items
+drwxr-xr-x   - root supergroup          0 2021-08-23 10:44 /user/root
+drwxr-xr-x   - root supergroup          0 2024-04-16 04:43 /user/swapna
+drwxr-xr-x   - root supergroup          0 2024-04-16 04:47 /user/textData
+root@a020a3889766:~# hdfs dfs -put ./csvFile.csv /user/textData
+root@a020a3889766:~# hdfs dfs -put ./txtFile.txt /user/textdata
+root@a020a3889766:~# hdfs dfs -ls /user/textData
+Found 1 items
+-rw-r--r--   1 root supergroup        527 2024-04-16 04:48 /user/textData/csvFile.csv
+root@a020a3889766:~# hdfs dfs -put ./txtFile.txt /user/textData
+root@a020a3889766:~# hdfs dfs -ls /user/textData
+Found 2 items
+-rw-r--r--   1 root supergroup        527 2024-04-16 04:48 /user/textData/csvFile.csv
+-rw-r--r--   1 root supergroup        156 2024-04-16 04:48 /user/textData/txtFile.txt
+root@a020a3889766:~# hdfs dfs -stat "type:%F permissions:%a %u:%g size:%b name:%n" /file
+stat: `/file': No such file or directory
+root@a020a3889766:~# hdfs dfs -stat "type:%F permissions:%a %u:%g size:%b name:%n" /txtFile.txt
+stat: `/txtFile.txt': No such file or directory
+root@a020a3889766:~# hdfs dfs -stat /user/textData/txtFile.txt
+2024-04-16 04:48:52
+root@a020a3889766:~#
